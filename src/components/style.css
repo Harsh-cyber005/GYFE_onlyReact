@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+.shadow{
+    box-shadow: 10px 10px 10px 10px 3px black;
+}
+
+.grad{
+    background-image: linear-gradient(to bottom right, #1748b2, #80bfea);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
