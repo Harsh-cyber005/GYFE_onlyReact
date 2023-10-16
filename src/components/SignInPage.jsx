@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import "./style.css"
 import AlertWindow from './AlertWindow';
 
-function SignInPage() {
+function SignInPage({HandleLogin}) {
 
     let [roll,setRoll] = useState("");
     let [password,setPassword] = useState("");
@@ -18,8 +19,10 @@ function SignInPage() {
     let [sendOTP,setSendOTP] = useState("flex w-full h-1/6 p-3 justify-center items-center bg-white mt-2 rounded-md shadow cursor-pointer hover:bg-gray-100");
     let [sendLogin,setSendLogin] = useState("hidden");
     let [roundedDiv,setRoundedDiv] = useState("flex h-4/5 w-full mt-4 bg-[#FFFFFF] p-4 shadow rounded-md");
+    let [loginHeight,setLoginHeight] = useState("h-[80%]");
     let [main, setMain] = useState("");
     let [flag,setFlag] = useState(false);
+    let [flagOk,setFlagOk] = useState(false);
 
     function ModalFunction(){
         setMain("");
@@ -33,22 +36,28 @@ function SignInPage() {
             setMain("blur-sm");
         }
         else{
-            alert('OTP SENT TO REGISTERED E-MAIL');
+            
             setClassNameOTP("flex px-4 pb-4 w-full justify-between bg-[#FFFFFF] shadow rounded-b-md");
             setSendOTP("hidden");
             setSendLogin("flex w-full h-1/6 p-3 justify-center items-center bg-white mt-2 rounded-md shadow cursor-pointer hover:bg-gray-100");
             setRoundedDiv("flex h-4/5 w-full mt-4 bg-[#FFFFFF] p-4 shadow rounded-t-md");
+            setLoginHeight("h-[85%]");
+            HandleLogin(roll,password,q1,a1,q2,a2,q3,a3);
         }
     }
 
 
     return (
         <div>
+            {flag&&<AlertWindow Message={"❌ Please fill all the fields"} bgColor={"#ef1c1c"} borderColor={"#EF5350"} buttonText={"CLOSE"} closingCall={ModalFunction}/>}
             {flag&&<AlertWindow closingCall={ModalFunction}/>}
             <div className={main}>
                 <div className=' flex justify-center items-center h-screen grad select-none shadow'>
-                    <div className=' rounded-lg flex flex-col items-center p-10 h-[80%] w-2/5 bg-[#FDECF2]/[0.6]'>
-                        <div className=' w-full h-[12%] flex justify-center items-center text-xl'>Welcome, Sign In</div>
+                    <div className={' rounded-lg flex flex-col items-center p-10 w-2/5 bg-[#FDECF2]/[0.6] '+loginHeight}>
+                        <div className=' w-full h-[6%] flex justify-between items-center text-xl pb-2'>
+                            <img className='h-[10vh]' src="src\assets\metakgp_logo.png"/>
+                            <h1 className=' font-extrabold text-3xl'>GYFE.</h1>
+                        </div>
                         <div className={roundedDiv}>
                             <div className='h-full flex flex-col justify-evenly items-start w-2/5 gap-3'>
                                 <div className=' h-1/9'>
